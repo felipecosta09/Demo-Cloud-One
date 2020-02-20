@@ -21,8 +21,8 @@ on:
 jobs:
     CI_Pipeline:
        runs-on: ubuntu-latest
-       
        steps:
+         
          - name: Git clone our repository
            uses: actions/checkout@v2
             
@@ -89,19 +89,23 @@ jobs:
            uses: actions/setup-node@v1
            with:
             node-version: ${{ matrix.node-version }}
+         
+         - name: Install node
          - run: npm install
+           
          - name: Configure my AWS Credentils
            uses: aws-actions/configure-aws-credentials@v1
-         - name: CF Deploy Tests
+           
+         - name: AWS CF Deploy Tests
            run:  aws cloudformation validate-template --template-body file://cfn.yml
       
-         - name: Deploy Cloud One Application Protection
-           run: echo Deploy Cloud One Application Protection
+         - name: Conformity CF Deploy Tests
+           run: echo Conformity CF Deploy Tests
     Deploy:
        runs-on: ubuntu-latest
        needs: [CD_Pipeline]
-       
        steps:
+        
         - name: Deploy to Fargate
           run: echo Deploy to Fargate
     
