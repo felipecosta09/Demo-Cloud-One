@@ -8,7 +8,7 @@ FROM centos:latest
 # Install Python and PIP
 RUN yum install -y -q -e 0 python27 epel-release > /dev/null
 RUN alternatives --set python /usr/bin/python2
-RUN curl -s https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py 1> nul
+RUN curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py && python get-pip.py 1> nul
 
 # Build App
 COPY appcode/requirements.txt /usr/src/app/
